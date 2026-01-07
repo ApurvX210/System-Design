@@ -3,29 +3,30 @@ package entities
 import "sync"
 
 type ParkingSpot interface {
-	SetOcc(bool)
-	Status() bool
+	ValidSpot() int
+	// Capacity() int
 }
 
 type MotorCycleSpot struct {
-	SpotId   int
+	SpotsCount	int
 	mu       sync.RWMutex
-	occupied bool
+	occupied	[]int
+	vacant		[]int
 }
 
-func (m *MotorCycleSpot) SetOcc(flag bool) {
+func (m *MotorCycleSpot) ValidSpot() int {
 	m.mu.Lock()
 	defer m.mu.Unlock()
-
-	m.occupied = flag
+	// Logic to find vacant spot
+	return 0
 }
 
-func (m *MotorCycleSpot) Status() bool{
-	m.mu.RLock()
-	defer m.mu.RLocker().Unlock()
+// func (m *MotorCycleSpot) Status() bool{
+// 	m.mu.RLock()
+// 	defer m.mu.RLocker().Unlock()
 
-	return m.occupied
-}
+// 	return m.occupied
+// }
 
 type CarSpot struct {
 	SpotId   int
@@ -33,19 +34,19 @@ type CarSpot struct {
 	occupied bool
 }
 
-func (c *CarSpot) SetOcc(flag bool) {
+func (c *CarSpot) ValidSpot() int {
 	c.mu.Lock()
 	defer c.mu.Unlock()
-
-	c.occupied = flag
+	// Logic to find vacant spot
+	return 0
 }
 
-func (c *CarSpot) Status() bool{
-	c.mu.RLock()
-	defer c.mu.RLocker().Unlock()
+// func (c *CarSpot) Status() bool{
+// 	c.mu.RLock()
+// 	defer c.mu.RLocker().Unlock()
 
-	return c.occupied
-}
+// 	return c.occupied
+// }
 
 type TruckSpot struct {
 	SpotId   int
@@ -53,16 +54,16 @@ type TruckSpot struct {
 	occupied bool
 }
 
-func (t *TruckSpot) SetOcc(flag bool) {
+func (t *TruckSpot) ValidSpot() int {
 	t.mu.Lock()
 	defer t.mu.Unlock()
-
-	t.occupied = flag
+	// Logic to find vacant spot
+	return 0
 }
 
-func (t *TruckSpot) Status() bool{
-	t.mu.RLock()
-	defer t.mu.RLocker().Unlock()
+// func (t *TruckSpot) Status() bool{
+// 	t.mu.RLock()
+// 	defer t.mu.RLocker().Unlock()
 
-	return t.occupied
-}
+// 	return t.occupied
+// }
