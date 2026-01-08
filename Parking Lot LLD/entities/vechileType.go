@@ -1,50 +1,73 @@
 package entities
 
-type VechileType int
+// VehicleType represents the type of vehicle
+type VehicleType int
 
 const (
-	MOTORCYCLE VechileType = iota
+	MOTORCYCLE VehicleType = iota
 	CAR
 	TRUCK
 )
 
-type Vechile interface {
-	Type() VechileType
+// Vehicle interface defines methods that all vehicles must implement
+type Vehicle interface {
+	Type() VehicleType
 	GetNumberPlate() string
 }
 
-type MotorCycle struct{
+// MotorCycle represents a motorcycle vehicle
+type MotorCycle struct {
 	numberPlate string
 }
 
-func (mc MotorCycle) Type() VechileType{
+func (mc MotorCycle) Type() VehicleType {
 	return MOTORCYCLE
 }
 
-func (mc MotorCycle) getNumberPlate() string{
+// GetNumberPlate returns the license plate number (exported method)
+func (mc MotorCycle) GetNumberPlate() string {
 	return mc.numberPlate
 }
 
-type Car struct{
+// NewMotorCycle creates a new MotorCycle instance
+func NewMotorCycle(numberPlate string) *MotorCycle {
+	return &MotorCycle{numberPlate: numberPlate}
+}
+
+// Car represents a car vehicle
+type Car struct {
 	numberPlate string
 }
 
-func (c Car) Type() VechileType{
+func (c Car) Type() VehicleType {
 	return CAR
 }
 
-func (c Car) getNumberPlate() string{
+// GetNumberPlate returns the license plate number (exported method)
+func (c Car) GetNumberPlate() string {
 	return c.numberPlate
 }
 
-type Truck struct{
+// NewCar creates a new Car instance
+func NewCar(numberPlate string) *Car {
+	return &Car{numberPlate: numberPlate}
+}
+
+// Truck represents a truck vehicle
+type Truck struct {
 	numberPlate string
 }
 
-func (t Truck) Type() VechileType{
+func (t Truck) Type() VehicleType {
 	return TRUCK
 }
 
-func (t Truck) getNumberPlate() string{
+// GetNumberPlate returns the license plate number (exported method)
+func (t Truck) GetNumberPlate() string {
 	return t.numberPlate
+}
+
+// NewTruck creates a new Truck instance
+func NewTruck(numberPlate string) *Truck {
+	return &Truck{numberPlate: numberPlate}
 }
