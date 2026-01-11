@@ -3,7 +3,7 @@ package entities
 import "sync"
 
 type Elevator struct {
-	Buttons 	[]Button
+	Buttons 	[]Pannel
 	mu      	sync.RWMutex
 	pos     	int
 	target		int
