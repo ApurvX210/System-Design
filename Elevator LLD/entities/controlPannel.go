@@ -9,7 +9,8 @@ const (
 )
 
 type Button struct {
-	Type ButtonType
+	Type 	ButtonType
+	Value	int
 }
 
 type Pannel struct {
@@ -22,15 +23,24 @@ type ExternalPannel struct {
 	signalChan	chan Signal
 }
 
-func (pannel ExternalPannel) OnClick(b Button) {
-
+func (pannel *ExternalPannel) OnClick(b Button) {
+	signal := Signal{
+		floor: pannel.floorId,
+		button: b,
+	}
+	pannel.signalChan <- signal
 }
 
 type InternalPannel struct {
+	floorId  	int
 	buttonList []Button
 	signalChan	chan Signal
 }
 
-func (pannel InternalPannel) OnClick(b Button) {
-
+func (pannel *InternalPannel) OnClick(b Button) {
+	signal := Signal{
+		floor: pannel.floorId,
+		button: b,
+	}
+	pannel.signalChan <- signal
 }
