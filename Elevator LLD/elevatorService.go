@@ -2,18 +2,24 @@ package main
 
 import (
 	"context"
-
 	"./entities"
 )
 
 type ElevatorService struct {
 	signalChan	chan entities.Signal
 	// pannel   	[]*entities.ExternalPannel
-	elevator 	[]*entities.Elevator
+	elevators 	[]*entities.Elevator
 }
 
-func (es *ElevatorService) HandleSignal(signal entities.Signal) error{
-	return nil
+func (es *ElevatorService) HandleSignal(signal entities.Signal) (entities.Elevator,error){
+	sameDir := []*entities.Elevator{}
+	stillElev := []*entities.Elevator{}
+	oppostiteDir := []*entities.Elevator{}
+	crntFloor := signal.GetFloorId()
+	targetFloor := signal.GetButton().Value
+	for _,elv := range es.elevators{
+		
+	}
 }
 
 func (es *ElevatorService) ListeningSignal(ctx context.Context){
